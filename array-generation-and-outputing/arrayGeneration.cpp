@@ -3,8 +3,6 @@
 //
 
 #include "arrayGeneration.h"
-#include <ctime>
-#include <cstdlib>
 
 int *generateArray(typeOfArray type, int size) {
     int *arr = new int[size];
@@ -30,8 +28,4 @@ int *generateArray(typeOfArray type, int size) {
         }
     }
     return arr;
-}
-
-void printArray(std::ifstream fin, int *arr) {
-
 }
