@@ -1,0 +1,17 @@
+//
+// Created by Михаил Демков on 15.02.2023.
+//
+
+#ifndef KDZ1_BUBBLESORTS_BUBBLESORTS_H_
+#define KDZ1_BUBBLESORTS_BUBBLESORTS_H_
+
+enum typeOfArray {
+    RANDOM_0_5,
+    RANDOM_0_4000,
+    ALMOST_SORTED,
+    ALMOST_SORTED_DESCENDING
+};
+
+
+
+#endif //KDZ1_BUBBLESORTS_BUBBLESORTS_H_

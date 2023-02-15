@@ -1,0 +1,12 @@
+# ninja log v5
+0	705	1676385007176475112	CMakeFiles/KDZ1.dir/main.cpp.o	aa600d5bdf0b09a3
+694	755	1676385539363249045	1	d883cb8600dac6f3
+10	97	1676385439091728810	KDZ1	77da435186391285
+2	475	1676385073766656192	CMakeFiles/KDZ1.dir/bubbleSort.cpp.o	c0ab3706f6d6801c
+0	693	1676385539297846153	CMakeFiles/1.dir/test.cpp.o	55a76793c3c87274
+2	2404	1676480427833514946	CMakeFiles/bubbleSorts.dir/bubbleSorts.cpp.o	c1a28f92485aaefa
+3	911	1676484911335929197	CMakeFiles/bubbleSorts.dir/bubbleSorts/bubbleSorts.cpp.o	660f6337243de0e2
+859	923	1676484782826152754	bubbleSorts	59fdea8713a933e3
+0	311	1676484698439939756	CMakeFiles/bubbleSorts.dir/array-generation/arrayGeneration.cpp.o	6548d2bece928b44
+3	90	1676484928447907201	CMakeFiles/bubbleSorts.dir/array-generation-and-outputing/arrayGeneration.cpp.o	f6f45d481aa2f5b0
+90	160	1676484928518375701	bubbleSorts	d4348c43cb3de97a

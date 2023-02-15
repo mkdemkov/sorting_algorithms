@@ -1,0 +1,4 @@
+/Users/filledevoler/Desktop/Coding/C++/KDZ1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/filledevoler/Desktop/Coding/C++/KDZ1/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/filledevoler/Desktop/Coding/C++/KDZ1/cmake-build-debug/CMakeFiles/bubbleSorts.dir
+/Users/filledevoler/Desktop/Coding/C++/KDZ1/cmake-build-debug/CMakeFiles/KDZ1.dir
