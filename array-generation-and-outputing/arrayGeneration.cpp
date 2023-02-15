@@ -21,9 +21,24 @@ int *generateArray(typeOfArray type, int size) {
             break;
         }
         case ALMOST_SORTED: {
+            int half = size / 2;
+            int *sorted_half = new int[half];
+            for (int i = 0; i < size; ++i) {
+                arr[i] = std::rand() % 4001;
+            }
+            // тут мы копируем часть массива, чтобы отсортировать его
+            for (int i = 0; i < half; ++i) {
+                sorted_half[i] = arr[i];
+            }
+            bubbleSort(sorted_half, half); // отсортируем часть массива
+            // обновим исходный массив
+            for (int i = 0; i < half; ++i) {
+                arr[i] = sorted_half[i];
+            }
+            delete[] sorted_half;
             break;
         }
-        case ALMOST_SORTED_DESCENDING: {
+        case SORTED_DESCENDING: {
             break;
         }
     }

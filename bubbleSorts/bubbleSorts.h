@@ -10,11 +10,14 @@
 #include <iostream>
 #include <chrono>
 
+/**
+ * ALMOST_SORTED - почти отсортированный массив (на половину) со значениями от 0 до 4000
+ */
 enum typeOfArray {
     RANDOM_0_5,
     RANDOM_0_4000,
     ALMOST_SORTED,
-    ALMOST_SORTED_DESCENDING
+    SORTED_DESCENDING
 };
 
 int64_t bubbleSort(int *arr, int size);
