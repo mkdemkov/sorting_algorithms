@@ -1,12 +1,7 @@
-//
-// Created by Михаил Демков on 15.02.2023.
-//
-
-//#include "../bubbleSorts/bubbleSorts.cpp"
 #include <iostream>
-// #include "../bubbleSorts/bubbleSorts.cpp"
 #include "../enum.h"
 
+// вспомогат функция для генерации частично отсорт. и обратно отсорт. массивов
 int64_t sortArray(int *arr, int size) {
     auto start = std::chrono::high_resolution_clock::now();
     for (int i = 0; i < size; ++i) {
@@ -22,6 +17,12 @@ int64_t sortArray(int *arr, int size) {
     return duration.count();
 }
 
+/**
+ * функиция генерации массива заданного типа и размера
+ * @param type тип массива
+ * @param size размер массива
+ * @return указатель на созданный массив
+ */
 int *generateArray(typeOfArray type, int size) {
     int *arr = new int[size];
     std::srand(std::time(nullptr));
@@ -57,7 +58,25 @@ int *generateArray(typeOfArray type, int size) {
             break;
         }
         case SORTED_DESCENDING: {
-            break;
+            // заполним массив значениями от 0 до 4000
+            for (int i = 0; i < size; ++i) {
+                arr[i] = std::rand() % 4001;
+            }
+            sortArray(arr, size); // отсортируем как обычно
+            int *copy = new int[size]; // создадим доп. массив, который отсортируем по убыванию
+            // заполним доп. массив
+            for (int i = size - 1; i >= 0; --i) {
+                copy[i] = arr[i];
+            }
+            // заполним основной массив
+            for (int i = 0; i < size; ++i) {
+                arr[i] = copy[i];
+            }
+            for (int i = 0; i < size; ++i) {
+                std::cout << arr[i] << " ";
+            }
+            std::cout << "\n";
+            delete[] copy;
         }
     }
     return arr;
