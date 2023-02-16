@@ -22,6 +22,10 @@ enum typeOfArray {
 
 int64_t bubbleSort(int *arr, int size);
 
+int64_t bubbleSortOptimized1(int *arr, int size);
+
+int64_t bubbleSortOptimized2(int *arr, int size);
+
 
 //void isSorted(const int *arr, int size);
 
