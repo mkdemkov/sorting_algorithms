@@ -3,6 +3,7 @@
 #include "sorting-algorithms/bubbleSorts.cpp"
 #include "sorting-algorithms/selectionSort.cpp"
 #include "sorting-algorithms/insertionSort.cpp"
+#include "sorting-algorithms/countingSort.cpp"
 #include "static/FileWriter.cpp"
 
 /**
@@ -132,6 +133,18 @@ int main() {
             time = sort(copy, i, binaryInsertionSort);
             FileWriter::outputArray(path, "Массив после сортировки:\n", copy, i);
             table << type << ";" << "сортировка бинарными вставками;" << i << ";" << time
+                  << "\n"; // занесем данные
+
+            // блок сортировки подсчетом
+            path = "../text-files-output/countingSort.txt"; // обновим путь
+            copyArray(arr, copy, i);
+            FileWriter::outputArray(path,
+                                    "Массив до сортировки (сортировка подсчетом):\n",
+                                    copy,
+                                    i);
+            time = sort(copy, i, countingSort);
+            FileWriter::outputArray(path, "Массив после сортировки:\n", copy, i);
+            table << type << ";" << "сортировка подсчетом;" << i << ";" << time
                   << "\n"; // занесем данные
         }
         for (int i = 100; i < 4100; i += 100) {
