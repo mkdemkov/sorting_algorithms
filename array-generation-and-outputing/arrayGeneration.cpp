@@ -65,17 +65,18 @@ int *generateArray(typeOfArray type, int size) {
             sortArray(arr, size); // отсортируем как обычно
             int *copy = new int[size]; // создадим доп. массив, который отсортируем по убыванию
             // заполним доп. массив
+            int j = 0;
             for (int i = size - 1; i >= 0; --i) {
-                copy[i] = arr[i];
+                copy[j++] = arr[i];
             }
             // заполним основной массив
             for (int i = 0; i < size; ++i) {
                 arr[i] = copy[i];
             }
-            for (int i = 0; i < size; ++i) {
-                std::cout << arr[i] << " ";
-            }
-            std::cout << "\n";
+//            for (int i = 0; i < size; ++i) {
+//                std::cout << copy[i] << " ";
+//            }
+//            std::cout << "\n";
             delete[] copy;
         }
     }

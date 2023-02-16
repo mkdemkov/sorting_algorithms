@@ -3,8 +3,10 @@ project(KDZ1)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_library(bubbleSorts STATIC
-        bubbleSorts/bubbleSorts.cpp)
+add_library(sorting-algorithms STATIC
+        sorting-algorithms/bubbleSorts.cpp
+        sorting-algorithms/selectionSort.cpp
+        sorting-algorithms/insertionSort.cpp)
 
 add_library(array-generation-and-outputing STATIC
         array-generation-and-outputing/arrayGeneration.cpp
