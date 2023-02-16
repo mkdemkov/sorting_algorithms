@@ -4,6 +4,7 @@
 #include "sorting-algorithms/selectionSort.cpp"
 #include "sorting-algorithms/insertionSort.cpp"
 #include "sorting-algorithms/countingSort.cpp"
+#include "sorting-algorithms/radixSort.cpp"
 #include "static/FileWriter.cpp"
 
 /**
@@ -145,6 +146,17 @@ int main() {
             time = sort(copy, i, countingSort);
             FileWriter::outputArray(path, "Массив после сортировки:\n", copy, i);
             table << type << ";" << "сортировка подсчетом;" << i << ";" << time
+                  << "\n"; // занесем данные
+
+            // блок цифровой сортировки (сделал по основанию 256) - сам алгоритм подсмотрен в интернете
+            path = "../text-files-output/radixSort.txt";
+            copyArray(arr, copy, i);
+            FileWriter::outputArray(path, "Массив до сортировки (цифровая сортировка):\n",
+                                    copy,
+                                    i);
+            time = sort(copy, i, radixSort);
+            FileWriter::outputArray(path, "Массив после сортировки:\n", copy, i);
+            table << type << ";" << "цифровая сортировка;" << i << ";" << time
                   << "\n"; // занесем данные
         }
         for (int i = 100; i < 4100; i += 100) {
