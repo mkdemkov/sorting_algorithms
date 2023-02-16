@@ -1,5 +1,5 @@
 #include <iostream>
-#include "../enum.h"
+#include "../static/enum.h"
 
 // вспомогат функция для генерации частично отсорт. и обратно отсорт. массивов
 int64_t sortArray(int *arr, int size) {

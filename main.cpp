@@ -3,7 +3,7 @@
 #include "sorting-algorithms/bubbleSorts.cpp"
 #include "sorting-algorithms/selectionSort.cpp"
 #include "sorting-algorithms/insertionSort.cpp"
-#include "FileWriter.cpp"
+#include "static/FileWriter.cpp"
 
 /**
  * функция, копирующая массив
@@ -63,7 +63,7 @@ int64_t sort(int *unsorted_arr,
 
 int main() {
     FileWriter::clearAllFiles();
-    int *arr_0_5, *arr_0_4000, *arr_almost_sorted, *arr_sorted_descending, *copy;
+    int *arr, *copy;
     std::ofstream table("../tables/time_of_size.csv"); // откроем таблицу
     table << "Вид массива;Метод сортировки;Размер массива;Время(нс)" << "\n";
     auto *types = new typeOfArray[4]{RANDOM_0_5, RANDOM_0_4000, ALMOST_SORTED, SORTED_DESCENDING};
@@ -73,27 +73,27 @@ int main() {
         // цикл, который отвечает за размеры массива
         for (int i = 50; i <= 300; i += 50) {
             // создаем массив со значениями от 0 до 5 и прогоняем по всем алгоритмам
-            arr_0_5 =
+            arr =
                 generateArray(types[t], i); // генерирум массив, его будем гонять по сортировкам
             copy = new int[i];
             std::string path = "../text-files-output/bubbleSort.txt";
 
             // начало блока пузырьковых сортировок
-            copyArray(arr_0_5, copy, i);
+            copyArray(arr, copy, i);
             FileWriter::outputArray(path, "Массив до сортировки (обычный пузырек):\n", copy, i);
             int64_t time = sort(copy, i, bubbleSort); // отсортируем копию
             FileWriter::outputArray(path, "Массив после сортировки:\n", copy, i);
             table << type << ";" << "пузырек(обычный);" << i << ";" << time
                   << "\n"; // записали в таблицу инфу
 
-            copyArray(arr_0_5, copy, i);
+            copyArray(arr, copy, i);
             FileWriter::outputArray(path, "Массив до сортировки (Айверсон-1):\n", copy, i);
             time = sort(copy, i, bubbleSortOptimized1); // отсортируем копию
             FileWriter::outputArray(path, "Массив после сортировки:\n", copy, i);
             table << type << ";" << "пузырек(айверсон-1);" << i << ";" << time
                   << "\n"; // занесем данные
 
-            copyArray(arr_0_5, copy, i);
+            copyArray(arr, copy, i);
             FileWriter::outputArray(path, "Массив до сортировки (Айверсон-2):\n", copy, i);
             time = sort(copy, i, bubbleSortOptimized2);
             FileWriter::outputArray(path, "Массив после сортировки:\n", copy, i);
@@ -102,7 +102,7 @@ int main() {
 
             // здесь начинается блок сортировки выбором
             path = "../text-files-output/selectionSort.txt"; // обновим путь для вывода
-            copyArray(arr_0_5, copy, i);
+            copyArray(arr, copy, i);
             FileWriter::outputArray(path,
                                     "Массив до сортировки (сортировка подсчетом):\n",
                                     copy,
@@ -114,7 +114,7 @@ int main() {
 
             // блок сортировки вставками
             path = "../text-files-output/insertionSort.txt"; // обновим путь для вывода
-            copyArray(arr_0_5, copy, i);
+            copyArray(arr, copy, i);
             FileWriter::outputArray(path,
                                     "Массив до сортировки (сортировка простыми вставками):\n",
                                     copy,
@@ -123,6 +123,19 @@ int main() {
             FileWriter::outputArray(path, "Массив после сортировки:\n", copy, i);
             table << type << ";" << "сортировка простыми вставками;" << i << ";" << time
                   << "\n"; // занесем данные
+
+            copyArray(arr, copy, i);
+            FileWriter::outputArray(path,
+                                    "Массив до сортировки (сортировка бинарными вставками):\n",
+                                    copy,
+                                    i);
+            time = sort(copy, i, binaryInsertionSort);
+            FileWriter::outputArray(path, "Массив после сортировки:\n", copy, i);
+            table << type << ";" << "сортировка бинарными вставками;" << i << ";" << time
+                  << "\n"; // занесем данные
+        }
+        for (int i = 100; i < 4100; i += 100) {
+
         }
     }
 }
