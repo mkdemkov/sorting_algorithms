@@ -2,7 +2,9 @@
 // Created by Михаил Демков on 15.02.2023.
 //
 
-#include "arrayOutputing.h"
+// #include "arrayOutputing.h"
+#include <iostream>
+#include <fstream>
 
 void printArray(int *arr, int size, bool status) {
     std::ofstream out("../output.txt", std::ios::app);

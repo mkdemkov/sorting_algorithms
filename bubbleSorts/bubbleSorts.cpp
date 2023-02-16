@@ -1,8 +1,10 @@
 //
 // Created by Михаил Демков on 14.02.2023.
 //
-#include "bubbleSorts.h"
-#include "../array-generation-and-outputing/arrayGeneration.h"
+// #include "bubbleSorts.h"
+//#include "../array-generation-and-outputing/arrayGeneration.h"
+
+#include <iostream>
 
 /**
  * пузырьковая сортировка (самая примитивная)

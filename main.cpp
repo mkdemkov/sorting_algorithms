@@ -1,8 +1,9 @@
 #include <iostream>
-#include "array-generation-and-outputing/arrayGeneration.h"
-#include "bubbleSorts/bubbleSorts.h"
-#include "FileWriter.h"
-#include "array-generation-and-outputing/arrayOutputing.h"
+#include "array-generation-and-outputing/arrayGeneration.cpp"
+#include "bubbleSorts/bubbleSorts.cpp"
+#include "FileWriter.cpp"
+// #include "array-generation-and-outputing/arrayOutputing.h"
+//#include "enum.cpp"
 
 void copyArray(const int *original, int *copy, int size) {
     for (int i = 0; i < size; ++i) {

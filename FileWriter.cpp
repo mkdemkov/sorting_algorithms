@@ -2,38 +2,47 @@
 // Created by Михаил Демков on 16.02.2023.
 //
 
-#include "FileWriter.h"
+// #include "FileWriter.h"
+#include <iostream>
+#include <fstream>
 
-FileWriter::FileWriter(const std::string &path) {
-    this->path_ = path;
-    out_.open(path, std::ios::app);
-}
-void FileWriter::writeToFile(const std::string& message) {
-    out_ << message;
-}
+class FileWriter {
+ private:
+    std::ofstream out_;
+    std::string path_;
+ public:
 
-void FileWriter::outputArray(const std::string& message, int *arr, int size) {
-    out_ << message;
-    for (int i = 0; i < size; ++i) {
-        out_ << arr[i] << " ";
+    FileWriter(const std::string &path) {
+        this->path_ = path;
+        out_.open(path, std::ios::app);
     }
-    out_ << "\n";
-}
+    void writeToFile(const std::string& message) {
+        out_ << message;
+    }
 
-void FileWriter::close() {
-    out_.close();
-}
+    void outputArray(const std::string& message, int *arr, int size) {
+        out_ << message;
+        for (int i = 0; i < size; ++i) {
+            out_ << arr[i] << " ";
+        }
+        out_ << "\n";
+    }
 
-void FileWriter::open(const std::string &path) {
-    out_.open(path);
-}
+    void close() {
+        out_.close();
+    }
 
-void FileWriter::update(const std::string &path) {
-    out_.close();
-    this->path_ = path;
-    out_.open(path);
-}
+    void open(const std::string &path) {
+        out_.open(path);
+    }
 
-FileWriter::~FileWriter() {
-    out_.close();
-}
+    void update(const std::string &path) {
+        out_.close();
+        this->path_ = path;
+        out_.open(path);
+    }
+
+    ~FileWriter() {
+        out_.close();
+    }
+};

@@ -2,7 +2,25 @@
 // Created by Михаил Демков on 15.02.2023.
 //
 
-#include "arrayGeneration.h"
+//#include "../bubbleSorts/bubbleSorts.cpp"
+#include <iostream>
+// #include "../bubbleSorts/bubbleSorts.cpp"
+#include "../enum.h"
+
+int64_t sortArray(int *arr, int size) {
+    auto start = std::chrono::high_resolution_clock::now();
+    for (int i = 0; i < size; ++i) {
+        // в самой примитивной реализации на каждой итерации наибольший элемент в неотсортированной части массива всплывает в конец
+        for (int j = 0; j < size - 1; ++j) {
+            if (arr[j] > arr[j + 1]) {
+                std::swap(arr[j], arr[j + 1]);
+            }
+        }
+    }
+    auto end = std::chrono::high_resolution_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start);
+    return duration.count();
+}
 
 int *generateArray(typeOfArray type, int size) {
     int *arr = new int[size];
@@ -30,7 +48,7 @@ int *generateArray(typeOfArray type, int size) {
             for (int i = 0; i < half; ++i) {
                 sorted_half[i] = arr[i];
             }
-            bubbleSort(sorted_half, half); // отсортируем часть массива
+            sortArray(sorted_half, half); // отсортируем часть массива
             // обновим исходный массив
             for (int i = 0; i < half; ++i) {
                 arr[i] = sorted_half[i];
