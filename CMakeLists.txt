@@ -7,11 +7,15 @@ add_library(sorting-algorithms STATIC
         sorting-algorithms/bubbleSorts.cpp
         sorting-algorithms/selectionSort.cpp
         sorting-algorithms/insertionSort.cpp
-        sorting-algorithms/countingSort.cpp sorting-algorithms/radixSort.cpp sorting-algorithms/mergeSort.cpp)
+        sorting-algorithms/countingSort.cpp
+        sorting-algorithms/radixSort.cpp
+        sorting-algorithms/mergeSort.cpp
+        sorting-algorithms/quickSort.cpp
+        sorting-algorithms/heapSort.cpp)
 
-add_library(array-generation-and-outputing STATIC
-        array-generation-and-outputing/arrayGeneration.cpp)
+add_library(array-generating STATIC
+        array-generating/arrayGeneration.cpp)
 
 add_executable(KDZ1 main.cpp static/FileWriter.cpp static/enum.h)
-#add_executable(bubbleSorts bubbleSorts/bubbleSorts.cpp array-generation-and-outputing/arrayGeneration.cpp array-generation-and-outputing/arrayGeneration.h bubbleSorts/bubbleSorts.h array-generation-and-outputing/arrayOutputing.cpp array-generation-and-outputing/arrayOutputing.h)
+#add_executable(bubbleSorts bubbleSorts/bubbleSorts.cpp array-generating/arrayGeneration.cpp array-generating/arrayGeneration.h bubbleSorts/bubbleSorts.h array-generating/arrayOutputing.cpp array-generating/arrayOutputing.h)
 

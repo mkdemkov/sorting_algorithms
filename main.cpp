@@ -1,11 +1,13 @@
 #include <iostream>
-#include "array-generation-and-outputing/arrayGeneration.cpp"
+#include "array-generating/arrayGeneration.cpp"
 #include "sorting-algorithms/bubbleSorts.cpp"
 #include "sorting-algorithms/selectionSort.cpp"
 #include "sorting-algorithms/insertionSort.cpp"
 #include "sorting-algorithms/countingSort.cpp"
 #include "sorting-algorithms/radixSort.cpp"
 #include "sorting-algorithms/mergeSort.cpp"
+#include "sorting-algorithms/quickSort.cpp"
+#include "sorting-algorithms/heapSort.cpp"
 #include "static/FileWriter.cpp"
 
 /**
@@ -59,7 +61,7 @@ int64_t sort(int *unsorted_arr,
     }
     // костыль чтобы отсортить массив в последний раз (26)
     time = sortingAlgorithm(unsorted_arr, size);
-    total_time -= time;
+    total_time -= time; // и вычтем время потраченное на последнюю сортировку
     int64_t avg_time = total_time / 25;
     return avg_time;
 }
@@ -170,6 +172,29 @@ int main() {
             FileWriter::outputArray(path, "Массив после сортировки:\n", copy, i);
             table << type << ";" << "сортировка слиянием;" << i << ";" << time
                   << "\n"; // занесем данные
+
+            // блок быстрой сортировки
+            path = "../text-files-output/quickSort.txt";
+            copyArray(arr, copy, i);
+            FileWriter::outputArray(path, "Массив до сортировки (быстрая сортировка):\n",
+                                    copy,
+                                    i);
+            time = sort(copy, i, quickSort);
+            FileWriter::outputArray(path, "Массив после сортировки:\n", copy, i);
+            table << type << ";" << "быстрая сортировка;" << i << ";" << time
+                  << "\n"; // занесем данные
+
+            // блок пирамидальной сортировки
+            path = "../text-files-output/heapSort.txt";
+            copyArray(arr, copy, i);
+            FileWriter::outputArray(path, "Массив до сортировки (пирамидальная сортировка):\n",
+                                    copy,
+                                    i);
+            time = sort(copy, i, heapSort);
+            FileWriter::outputArray(path, "Массив после сортировки:\n", copy, i);
+            table << type << ";" << "пирамидальная сортировка;" << i << ";" << time
+                  << "\n"; // занесем данные
+
         }
         for (int i = 100; i < 4100; i += 100) {
 

@@ -44,5 +44,17 @@ class FileWriter {
         out.close();
         out.open("../tables/time_of_size.csv");
         out.close();
+        out.open("../text-files-output/countingSort.txt");
+        out.close();
+        out.open("../text-files-output/heapSort.txt");
+        out.close();
+        out.open("../text-files-output/insertionSort.txt");
+        out.close();
+        out.open("../text-files-output/mergeSort.txt");
+        out.close();
+        out.open("../text-files-output/quickSort.txt");
+        out.close();
+        out.open("../text-files-output/radixSort.txt");
+        out.close();
     }
 };
