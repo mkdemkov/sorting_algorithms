@@ -7,7 +7,7 @@ add_library(sorting-algorithms STATIC
         sorting-algorithms/bubbleSorts.cpp
         sorting-algorithms/selectionSort.cpp
         sorting-algorithms/insertionSort.cpp
-        sorting-algorithms/countingSort.cpp sorting-algorithms/radixSort.cpp)
+        sorting-algorithms/countingSort.cpp sorting-algorithms/radixSort.cpp sorting-algorithms/mergeSort.cpp)
 
 add_library(array-generation-and-outputing STATIC
         array-generation-and-outputing/arrayGeneration.cpp)
