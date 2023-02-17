@@ -42,8 +42,6 @@ class FileWriter {
         out.close();
         out.open("../text-files-output/selectionSort.txt");
         out.close();
-        out.open("../tables/time_of_size.csv");
-        out.close();
         out.open("../text-files-output/countingSort.txt");
         out.close();
         out.open("../text-files-output/heapSort.txt");
@@ -57,6 +55,10 @@ class FileWriter {
         out.open("../text-files-output/radixSort.txt");
         out.close();
         out.open("../text-files-output/shellSort.txt");
+        out.close();
+        out.open("../tables/time_of_size.csv");
+        out.close();
+        out.open("../tables/time_of_operations.csv");
         out.close();
     }
 };
