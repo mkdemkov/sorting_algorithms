@@ -253,6 +253,7 @@ void process(typeOfArray type_of_array, int *arr, int i, int *copy) {
     delete[] arr;
     delete[] copy;
     time_table.close();
+    count_table.close();
 }
 
 int main() {
