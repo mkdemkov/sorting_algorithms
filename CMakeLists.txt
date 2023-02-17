@@ -11,7 +11,8 @@ add_library(sorting-algorithms STATIC
         sorting-algorithms/radixSort.cpp
         sorting-algorithms/mergeSort.cpp
         sorting-algorithms/quickSort.cpp
-        sorting-algorithms/heapSort.cpp)
+        sorting-algorithms/heapSort.cpp
+        sorting-algorithms/shellSort.cpp)
 
 add_library(array-generating STATIC
         array-generating/arrayGeneration.cpp)

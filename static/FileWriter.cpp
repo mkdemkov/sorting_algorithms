@@ -56,5 +56,7 @@ class FileWriter {
         out.close();
         out.open("../text-files-output/radixSort.txt");
         out.close();
+        out.open("../text-files-output/shellSort.txt");
+        out.close();
     }
 };
