@@ -4,7 +4,7 @@
  * сортировка простыми вставками
  * @param arr сортируемый массив
  * @param size размер массива
- * @return время сортировки в наносекундах
+ * @return время сортировки в наносекундах и кол-во элементарных операций
  */
 std::pair<int64_t, int64_t> insertionSort(int *arr, int size) {
     int64_t count = 0;
@@ -57,7 +57,7 @@ int binarySearch(const int *arr, int el, int left, int right, int64_t &count) {
  * сортировка бинарными вставками
  * @param arr сортируемый массив
  * @param size размер массива
- * @return время сортировки в наносекундах
+ * @return время сортировки в наносекундах и кол-во элементарных операций
  */
 std::pair<int64_t, int64_t> binaryInsertionSort(int *arr, int size) {
     int64_t count = 0;

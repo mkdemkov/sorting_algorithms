@@ -53,7 +53,7 @@ void additionalQuickSort(int *arr, int left, int right, int64_t &count) {
  * быстрая сортировка
  * @param arr сортируемый массив
  * @param size размер массива
- * @return время сортировки в наносекундах
+ * @return время сортировки в наносекундах и кол-во элементарных операций
  */
 std::pair<int64_t, int64_t> quickSort(int *arr, int size) {
     int64_t count = 0;

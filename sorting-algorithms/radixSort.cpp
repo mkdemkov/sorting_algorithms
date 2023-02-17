@@ -59,6 +59,7 @@ void countingSort256(int *arr, int size, int exp, int64_t &counter) {
  * цифровая сортировка по основанию 256
  * @param arr сортируемый массив
  * @param size размер массива
+ * @return время сортировки в наносекундах и кол-во элементарных операций
  */
 std::pair<int64_t, int64_t> radixSort(int *arr, int size) {
     int64_t count = 0;

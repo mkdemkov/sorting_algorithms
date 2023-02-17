@@ -45,26 +45,32 @@ std::string enumToString(typeOfArray type) {
  * @param right правая граница размера массива
  * @param step шаг для изменения размера массива
  * @param sortingAlgorithm алгоритм сортировки, которым сортируем
- * @return усредненное время работы алгоритма
+ * @return усредненное время работы алгоритма и усредненное число эл. операций
  */
-int64_t sort(int *unsorted_arr,
+std::pair<int64_t, int64_t> sort(int *unsorted_arr,
              int size,
-             const std::function<int64_t(int *, int)> &sortingAlgorithm) {
+             const std::function<std::pair<int64_t, int64_t>(int *, int)> &sortingAlgorithm) {
     int *copy_to_sort = new int[size]; // этот массив - копию будем сортировать
     copyArray(unsorted_arr, copy_to_sort, size);
-    int64_t total_time = 0, time; // суммарное время сортировки за 25 прогонов
+    int64_t total_time = 0, time, count, total_count = 0; // суммарное время сортировки за 25 прогонов
     // цикл для прогона одного и того же массива
     for (int j = 0; j < 25; ++j) {
-        time = sortingAlgorithm(copy_to_sort, size);
+        auto res = sortingAlgorithm(copy_to_sort, size);
+        time = res.first;
+        count = res.second;
         total_time += time;
+        total_count += count;
         // тут аккуратный костыль, чтобы не вернуть сортируемый массив в исходное состояние
         copyArray(unsorted_arr, copy_to_sort, size);
     }
     // костыль чтобы отсортить массив в последний раз (26)
-    time = sortingAlgorithm(unsorted_arr, size);
+    auto res = sortingAlgorithm(unsorted_arr, size);
+    time = res.first;
+    count = res.second;
     total_time -= time; // и вычтем время потраченное на последнюю сортировку
-    int64_t avg_time = total_time / 25;
-    return avg_time;
+    total_count -= count;
+    int64_t avg_time = total_time / 25, avg_count = total_count / 25;
+    return std::make_pair(avg_time, avg_count);
 }
 
 /**
@@ -79,26 +85,33 @@ void process(typeOfArray type_of_array, int *arr, int i, int *copy) {
     // создаем массив со значениями типа type и прогоняем его по всем алгоритмам
     arr = generateArray(type_of_array, i); // генерирум массив, его будем гонять по сортировкам
     copy = new int[i];
+    int64_t time, count; // время и число эл.операций
     std::string path = "../text-files-output/bubbleSort.txt";
     std::string type = enumToString(type_of_array); // тип массива как строка
     // начало блока пузырьковых сортировок
     copyArray(arr, copy, i);
     FileWriter::outputArray(path, "Массив до сортировки (обычный пузырек):\n", copy, i);
-    int64_t time = sort(copy, i, bubbleSort); // отсортируем копию
+    auto res = sort(copy, i, bubbleSort); // отсортируем копию
+    time = res.first;
+    count = res.second;
     FileWriter::outputArray(path, "Массив после сортировки:\n", copy, i);
     table << type << ";" << "пузырек(обычный);" << i << ";" << time
           << "\n"; // записали в таблицу инфу
 
     copyArray(arr, copy, i);
     FileWriter::outputArray(path, "Массив до сортировки (Айверсон-1):\n", copy, i);
-    time = sort(copy, i, bubbleSortOptimized1); // отсортируем копию
+    res = sort(copy, i, bubbleSortOptimized1); // отсортируем копию
+    time = res.first;
+    count = res.second;
     FileWriter::outputArray(path, "Массив после сортировки:\n", copy, i);
     table << type << ";" << "пузырек(айверсон-1);" << i << ";" << time
           << "\n"; // занесем данные
 
     copyArray(arr, copy, i);
     FileWriter::outputArray(path, "Массив до сортировки (Айверсон-2):\n", copy, i);
-    time = sort(copy, i, bubbleSortOptimized2);
+    res = sort(copy, i, bubbleSortOptimized2);
+    time = res.first;
+    count = res.second;
     FileWriter::outputArray(path, "Массив после сортировки:\n", copy, i);
     table << type << ";" << "пузырек(айверсон-2);" << i << ";" << time
           << "\n"; // занесем данные
@@ -110,7 +123,9 @@ void process(typeOfArray type_of_array, int *arr, int i, int *copy) {
                             "Массив до сортировки (сортировка подсчетом):\n",
                             copy,
                             i);
-    time = sort(copy, i, selectionSort);
+    res = sort(copy, i, selectionSort);
+    time = res.first;
+    count = res.second;
     FileWriter::outputArray(path, "Массив после сортировки:\n", copy, i);
     table << type << ";" << "сортировка выбором;" << i << ";" << time
           << "\n"; // занесем данные
@@ -122,7 +137,9 @@ void process(typeOfArray type_of_array, int *arr, int i, int *copy) {
                             "Массив до сортировки (сортировка простыми вставками):\n",
                             copy,
                             i);
-    time = sort(copy, i, insertionSort);
+    res = sort(copy, i, insertionSort);
+    time = res.first;
+    count = res.second;
     FileWriter::outputArray(path, "Массив после сортировки:\n", copy, i);
     table << type << ";" << "сортировка простыми вставками;" << i << ";" << time
           << "\n"; // занесем данные
@@ -132,7 +149,9 @@ void process(typeOfArray type_of_array, int *arr, int i, int *copy) {
                             "Массив до сортировки (сортировка бинарными вставками):\n",
                             copy,
                             i);
-    time = sort(copy, i, binaryInsertionSort);
+    res = sort(copy, i, binaryInsertionSort);
+    time = res.first;
+    count = res.second;
     FileWriter::outputArray(path, "Массив после сортировки:\n", copy, i);
     table << type << ";" << "сортировка бинарными вставками;" << i << ";" << time
           << "\n"; // занесем данные
@@ -144,7 +163,9 @@ void process(typeOfArray type_of_array, int *arr, int i, int *copy) {
                             "Массив до сортировки (сортировка подсчетом):\n",
                             copy,
                             i);
-    time = sort(copy, i, countingSort);
+    res = sort(copy, i, countingSort);
+    time = res.first;
+    count = res.second;
     FileWriter::outputArray(path, "Массив после сортировки:\n", copy, i);
     table << type << ";" << "сортировка подсчетом;" << i << ";" << time
           << "\n"; // занесем данные
@@ -155,7 +176,9 @@ void process(typeOfArray type_of_array, int *arr, int i, int *copy) {
     FileWriter::outputArray(path, "Массив до сортировки (цифровая сортировка):\n",
                             copy,
                             i);
-    time = sort(copy, i, radixSort);
+    res = sort(copy, i, radixSort);
+    time = res.first;
+    count = res.second;
     FileWriter::outputArray(path, "Массив после сортировки:\n", copy, i);
     table << type << ";" << "цифровая сортировка;" << i << ";" << time
           << "\n"; // занесем данные
@@ -166,7 +189,9 @@ void process(typeOfArray type_of_array, int *arr, int i, int *copy) {
     FileWriter::outputArray(path, "Массив до сортировки (сортировка слиянием):\n",
                             copy,
                             i);
-    time = sort(copy, i, mergeSort);
+    res = sort(copy, i, mergeSort);
+    time = res.first;
+    count = res.second;
     FileWriter::outputArray(path, "Массив после сортировки:\n", copy, i);
     table << type << ";" << "сортировка слиянием;" << i << ";" << time
           << "\n"; // занесем данные
@@ -177,7 +202,9 @@ void process(typeOfArray type_of_array, int *arr, int i, int *copy) {
     FileWriter::outputArray(path, "Массив до сортировки (быстрая сортировка):\n",
                             copy,
                             i);
-    time = sort(copy, i, quickSort);
+    res = sort(copy, i, quickSort);
+    time = res.first;
+    count = res.second;
     FileWriter::outputArray(path, "Массив после сортировки:\n", copy, i);
     table << type << ";" << "быстрая сортировка;" << i << ";" << time
           << "\n"; // занесем данные
@@ -188,7 +215,9 @@ void process(typeOfArray type_of_array, int *arr, int i, int *copy) {
     FileWriter::outputArray(path, "Массив до сортировки (пирамидальная сортировка):\n",
                             copy,
                             i);
-    time = sort(copy, i, heapSort);
+    res = sort(copy, i, heapSort);
+    time = res.first;
+    count = res.second;
     FileWriter::outputArray(path, "Массив после сортировки:\n", copy, i);
     table << type << ";" << "пирамидальная сортировка;" << i << ";" << time
           << "\n"; // занесем данные
@@ -199,7 +228,9 @@ void process(typeOfArray type_of_array, int *arr, int i, int *copy) {
     FileWriter::outputArray(path, "Массив до сортировки (сортировка Шелла(посл.Шелла)):\n",
                             copy,
                             i);
-    time = sort(copy, i, shellSort);
+    res = sort(copy, i, shellSort);
+    time = res.first;
+    count = res.second;
     FileWriter::outputArray(path, "Массив после сортировки:\n", copy, i);
     table << type << ";" << "сортировка Шелла(посл.Шелла);" << i << ";" << time
           << "\n"; // занесем данные
