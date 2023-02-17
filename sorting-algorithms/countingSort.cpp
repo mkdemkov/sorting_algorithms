@@ -7,9 +7,13 @@
  * @return время сортировки в наносекундах
  */
 int64_t countingSort(int *arr, int size) {
+    int64_t count = 0;
     auto start = std::chrono::high_resolution_clock::now();
     int *additional_arr = new int[4001]; // создадим доп. массив
+    count += 2; // создание массива и присваивание - две эл. операции
+    ++count; // присваивание i = 0
     for (int i = 0; i < 4001; ++i) {
+        count += 2; // сравнение с 4001 и инкремент
         additional_arr[i] = 0;
     }
     // заполним доп.массив

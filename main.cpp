@@ -204,6 +204,8 @@ void process(typeOfArray type_of_array, int *arr, int i, int *copy) {
     table << type << ";" << "сортировка Шелла(посл.Шелла);" << i << ";" << time
           << "\n"; // занесем данные
 
+    delete[] arr;
+    delete[] copy;
     table.close();
 }
 

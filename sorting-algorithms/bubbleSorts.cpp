@@ -7,11 +7,17 @@
  * @return время сортировки в наносекундах
  */
 int64_t bubbleSort(int *arr, int size) {
+    int64_t count = 0;
     auto start = std::chrono::high_resolution_clock::now();
+    count += 2; // эта эл. операция во внешнем цикле i = 0 и внутреннем j = 0 (присвоение);
     for (int i = 0; i < size; ++i) {
+        count += 2; // сравнение с size и инкремент
         // в самой примитивной реализации на каждой итерации наибольший элемент в неотсортированной части массива всплывает в конец
         for (int j = 0; j < size - 1; ++j) {
+            count += 2; // сравнение и инкремент
+            ++count; // сравнение
             if (arr[j] > arr[j + 1]) {
+                ++count; // свап
                 std::swap(arr[j], arr[j + 1]);
             }
         }
