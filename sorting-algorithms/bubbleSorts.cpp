@@ -4,9 +4,9 @@
  * пузырьковая сортировка (самая примитивная)
  * @param arr сортируемый массив
  * @param size размер массива
- * @return время сортировки в наносекундах
+ * @return время сортировки в наносекундах и кол-во элементарных операций
  */
-int64_t bubbleSort(int *arr, int size) {
+std::pair<int64_t, int64_t> bubbleSort(int *arr, int size) {
     int64_t count = 0;
     auto start = std::chrono::high_resolution_clock::now();
     count += 2; // эта эл. операция во внешнем цикле i = 0 и внутреннем j = 0 (присвоение);
@@ -24,16 +24,16 @@ int64_t bubbleSort(int *arr, int size) {
     }
     auto end = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start);
-    return duration.count();
+    return std::make_pair(duration.count(), count);
 }
 
 /**
  * пузырьковая сортировка с уловием Айверсона 1
  * @param arr сортируемы массив
  * @param size размер массива
- * @return время сортировки в наносекундах
+ * @return время сортировки в наносекундах и кол-во элементарных операций
  */
-int64_t bubbleSortOptimized1(int *arr, int size) {
+std::pair<int64_t, int64_t> bubbleSortOptimized1(int *arr, int size) {
     int64_t count = 0;
     auto start = std::chrono::high_resolution_clock::now();
     count += 2; // присваивания i = 0 и j = 0 в циклах
@@ -56,16 +56,16 @@ int64_t bubbleSortOptimized1(int *arr, int size) {
     }
     auto end = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start);
-    return duration.count();
+    return std::make_pair(duration.count(), count);
 }
 
 /**
  * пузырьковая сортировка с условием айверсона-2
  * @param arr сортируемый массив
  * @param size размер массива
- * @return время сортировки в наносекундах
+ * @return время сортировки в наносекундах и кол-во элементарных операций
  */
-int64_t bubbleSortOptimized2(int *arr, int size) {
+std::pair<int64_t, int64_t> bubbleSortOptimized2(int *arr, int size) {
     int64_t count = 0;
     auto start = std::chrono::high_resolution_clock::now();
     ++count; // присваивание last_swap = size - 1
@@ -92,5 +92,5 @@ int64_t bubbleSortOptimized2(int *arr, int size) {
     }
     auto end = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start);
-    return duration.count();
+    return std::make_pair(duration.count(), count);
 }

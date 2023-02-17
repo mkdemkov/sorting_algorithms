@@ -4,9 +4,9 @@
  * сортировка подсчетом
  * @param arr сортируемый массив
  * @param size размер массива
- * @return время сортировки в наносекундах
+ * @return время сортировки в наносекундах и кол-во элементарных операций
  */
-int64_t countingSort(int *arr, int size) {
+std::pair<int64_t, int64_t> countingSort(int *arr, int size) {
     int64_t count = 0;
     auto start = std::chrono::high_resolution_clock::now();
     int *additional_arr = new int[4001]; // создадим доп. массив
@@ -40,5 +40,5 @@ int64_t countingSort(int *arr, int size) {
     delete[] additional_arr;
     auto end = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start);
-    return duration.count();
+    return std::make_pair(duration.count(), count);
 }

@@ -5,6 +5,7 @@
  * @param arr сортируемый массив
  * @param size размер массива
  * @param i индекс текущего максимума
+ * @param count счетчик эл. операций
  */
 void heapify(int *arr, int size, int i, int64_t &count) {
     count += 7; // 3 присваивания, 2 *, 2 +
@@ -36,9 +37,9 @@ void heapify(int *arr, int size, int i, int64_t &count) {
  * пирамидальная сортировка
  * @param arr сортируемый массив
  * @param size размер массива
- * @return время сортировки в наносекундах
+ * @return время сортировки в наносекундах и кол-во элементарных операций
  */
-int64_t heapSort(int *arr, int size) {
+std::pair<int64_t, int64_t> heapSort(int *arr, int size) {
     int64_t count = 0;
     auto start = std::chrono::high_resolution_clock::now();
     count += 3; // присваивание в цикле, / и -
@@ -55,5 +56,5 @@ int64_t heapSort(int *arr, int size) {
     }
     auto end = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start);
-    return duration.count();
+    return std::make_pair(duration.count(), count);
 }

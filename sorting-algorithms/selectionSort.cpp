@@ -6,7 +6,7 @@
  * @param size размера массива
  * @return время сортировки в наносекундах
  */
-int64_t selectionSort(int *arr, int size) {
+std::pair<int64_t, int64_t> selectionSort(int *arr, int size) {
     int64_t count = 0;
     auto start = std::chrono::high_resolution_clock::now();
     int index_of_min;
@@ -30,5 +30,5 @@ int64_t selectionSort(int *arr, int size) {
     }
     auto end = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start);
-    return duration.count();
+    return std::make_pair(duration.count(), count);
 }

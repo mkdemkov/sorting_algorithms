@@ -60,7 +60,7 @@ void countingSort256(int *arr, int size, int exp, int64_t &counter) {
  * @param arr сортируемый массив
  * @param size размер массива
  */
-int64_t radixSort(int *arr, int size) {
+std::pair<int64_t, int64_t> radixSort(int *arr, int size) {
     int64_t count = 0;
     auto start = std::chrono::high_resolution_clock::now();
     ++count; // присваивание
@@ -73,5 +73,5 @@ int64_t radixSort(int *arr, int size) {
     }
     auto end = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start);
-    return duration.count();
+    return std::make_pair(duration.count(), count);
 }

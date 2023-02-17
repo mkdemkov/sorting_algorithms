@@ -94,7 +94,7 @@ void additionalMergeSort(int *arr, int left, int right, int64_t &count) {
  * @param size размер массива
  * @return время сортировки в наносекундах
  */
-int64_t mergeSort(int *arr, int size) {
+std::pair<int64_t, int64_t> mergeSort(int *arr, int size) {
     int64_t count = 0;
     auto start = std::chrono::high_resolution_clock::now();
     count += 3; // 2 присваивания и -
@@ -102,6 +102,6 @@ int64_t mergeSort(int *arr, int size) {
     additionalMergeSort(arr, left, right, count);
     auto end = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start);
-    return duration.count();
+    return std::make_pair(duration.count(), count);
 }
 

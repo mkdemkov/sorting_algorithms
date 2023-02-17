@@ -6,7 +6,7 @@
  * @param size размер массива
  * @return время сортировки в наносекундах
  */
-int64_t insertionSort(int *arr, int size) {
+std::pair<int64_t, int64_t> insertionSort(int *arr, int size) {
     int64_t count = 0;
     auto start = std::chrono::high_resolution_clock::now();
     int cur; // текущий элемент, который вставляем в отсортированную часть
@@ -26,7 +26,7 @@ int64_t insertionSort(int *arr, int size) {
     }
     auto end = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start);
-    return duration.count();
+    return std::make_pair(duration.count(), count);
 }
 
 int binarySearch(const int *arr, int el, int left, int right, int64_t &count) {
@@ -59,7 +59,7 @@ int binarySearch(const int *arr, int el, int left, int right, int64_t &count) {
  * @param size размер массива
  * @return время сортировки в наносекундах
  */
-int64_t binaryInsertionSort(int *arr, int size) {
+std::pair<int64_t, int64_t> binaryInsertionSort(int *arr, int size) {
     int64_t count = 0;
     auto start = std::chrono::high_resolution_clock::now();
     int ind, cur; // ind - индекс элемента больше нашего, cur - текущий элемент
@@ -81,5 +81,5 @@ int64_t binaryInsertionSort(int *arr, int size) {
     }
     auto end = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start);
-    return duration.count();
+    return std::make_pair(duration.count(), count);
 }
