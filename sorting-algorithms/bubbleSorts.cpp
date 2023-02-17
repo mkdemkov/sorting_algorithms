@@ -15,7 +15,7 @@ int64_t bubbleSort(int *arr, int size) {
         // в самой примитивной реализации на каждой итерации наибольший элемент в неотсортированной части массива всплывает в конец
         for (int j = 0; j < size - 1; ++j) {
             count += 2; // сравнение и инкремент
-            ++count; // сравнение
+            count += 2; // сравнение и +
             if (arr[j] > arr[j + 1]) {
                 ++count; // свап
                 std::swap(arr[j], arr[j + 1]);
@@ -34,15 +34,21 @@ int64_t bubbleSort(int *arr, int size) {
  * @return время сортировки в наносекундах
  */
 int64_t bubbleSortOptimized1(int *arr, int size) {
+    int64_t count = 0;
     auto start = std::chrono::high_resolution_clock::now();
+    count += 2; // присваивания i = 0 и j = 0 в циклах
     for (int i = 0; i < size; ++i) {
+        count += 3; // сравнение с size, ++ и присваивание has_swaps = false;
         bool has_swaps; // флаг, показываюший были ли обмены
         for (int j = 0; j < size - 1; ++j) {
+            count += 4; // сравнение с size - 1, ++, + и сравнение > ниже
             if (arr[j] > arr[j + 1]) {
+                count += 3; // присваивание, + и swap
                 has_swaps = true;
                 std::swap(arr[j], arr[j + 1]);
             }
         }
+        ++count; // сравнение !=
         // если обменов не произошло, значит массив отсортирован
         if (!has_swaps) {
             break;
@@ -60,18 +66,25 @@ int64_t bubbleSortOptimized1(int *arr, int size) {
  * @return время сортировки в наносекундах
  */
 int64_t bubbleSortOptimized2(int *arr, int size) {
+    int64_t count = 0;
     auto start = std::chrono::high_resolution_clock::now();
+    ++count; // присваивание last_swap = size - 1
     int last_swap = size - 1, help;
+    count += 2; // присваивания i = 0 и j = 0 в циклах
     for (int i = 0; i < size; ++i) {
+        count += 4; // сравнение с size, ++ и 2 присваивания ниже
         help = last_swap; // вспомогательная перемнная, чтобы не потерять позицию последнего свапа
         last_swap = 0;
         // в цикле идем до позиции последнего обмена
         for (int j = 0; j < help; ++j) {
+            count += 4; // сравнение с help, ++, + и сравнение > ниже
             if (arr[j] > arr[j + 1]) {
                 last_swap = j; // обновляем позицию ласт обмена
                 std::swap(arr[j], arr[j + 1]);
+                count += 3; // присваивание, + и swap
             }
         }
+        ++count; // сравнение == ниже
         // если позиция осталась 0, то обменов не было
         if (last_swap == 0) {
             break;

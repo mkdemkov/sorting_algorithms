@@ -223,7 +223,7 @@ int main() {
             process(types[t], arr, i, copy);
         }
         // цикл для массивов размером от 100 до 4100
-        for (int i = 100; i < 4100; i += 100) {
+        for (int i = 100; i <= 4100; i += 100) {
             process(types[t], arr, i, copy);
         }
     }
