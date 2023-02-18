@@ -261,8 +261,8 @@ int main() {
     int *arr = nullptr, *copy = nullptr;
     std::ofstream time_table("../tables/time_of_size.csv"); // откроем таблицы
     std::ofstream count_table("../tables/time_of_operations.csv");
-    time_table << "Вид массива;Метод сортировки;Размер массива;Время(нс)" << "\n";
-    count_table << "Вид массива;Метод сортировки;Размер массива;Кол-во операций" << "\n";
+    time_table << "Type of array;Sorting algorithm;Array size;Time(ns)" << "\n";
+    count_table << "Type of array;Sorting algorithm;Array size;Elementary operations" << "\n";
     time_table.close();
     count_table.close();
     auto *types = new typeOfArray[4]{RANDOM_0_5, RANDOM_0_4000, ALMOST_SORTED, SORTED_DESCENDING};
