@@ -1,3 +1,6 @@
+/**
+ * АиСД-2, 2023, задание 5. Демков Михаил Кириллович БПИ212. Среда разработки - CLion
+*/
 #include <iostream>
 #include "array-generating/arrayGeneration.cpp"
 #include "sorting-algorithms/bubbleSorts.cpp"
